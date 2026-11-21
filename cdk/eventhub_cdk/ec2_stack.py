@@ -21,7 +21,6 @@ class EventHubStack(cdk.Stack):
 
         sg = ec2.SecurityGroup(
             self, "EventHubSg", vpc=vpc,
-            security_group_name="eventhub-sg",
             description="Permite trafico HTTP y SSH al servidor EC2",
         )
         for puerto in (80, 22):
@@ -62,4 +61,3 @@ class EventHubStack(cdk.Stack):
 
         cdk.CfnOutput(self, "PublicIp", value=eip.attr_public_ip)
         cdk.CfnOutput(self, "Url", value=f"http://{eip.attr_public_ip}/")
-        
